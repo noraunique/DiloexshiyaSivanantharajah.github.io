@@ -144,6 +144,7 @@
       const fd = new FormData(form);
       const name = String(fd.get('name') || '').trim();
       const email = String(fd.get('email') || '').trim();
+      const subject = String(fd.get('subject') || '').trim();
       const message = String(fd.get('message') || '').trim();
 
       let ok = true;
@@ -158,6 +159,11 @@
         ok = false;
       } else setError('email', '');
 
+      if (subject.length < 2) {
+        setError('subject', 'Please enter a subject.');
+        ok = false;
+      } else setError('subject', '');
+
       if (message.length < 10) {
         setError('message', 'Please add a short message (at least 10 characters).');
         ok = false;
@@ -168,8 +174,11 @@
         return;
       }
 
-      form.reset();
-      showToast('Message sent successfully. I’ll get back to you soon.');
+      // Open Gmail with pre-filled data
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=diloexshiya@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+      window.open(gmailUrl, '_blank');
+      
+      showToast('Opening Gmail with your message...');
     });
   }
 
