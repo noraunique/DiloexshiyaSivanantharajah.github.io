@@ -791,12 +791,18 @@ UI UX Portfolio Sri Lanka
               </div>
 
               <div class="field">
+                <label class="field__label" for="subject">Subject</label>
+                <input class="field__input" id="subject" name="subject" type="text" autocomplete="subject" required />
+                <div class="field__error" data-error-for="subject" role="alert"></div>
+              </div>
+
+              <div class="field">
                 <label class="field__label" for="message">Message</label>
                 <textarea class="field__input field__textarea" id="message" name="message" rows="5" required></textarea>
                 <div class="field__error" data-error-for="message" role="alert"></div>
               </div>
 
-              <button class="btn btn--primary btn--block" type="submit" data-magnetic>Send Message</button>
+              <button class="btn btn--primary btn--block" type="submit" data-magnetic>Open in Gmail</button>
             </form>
           </div>
         </div>
